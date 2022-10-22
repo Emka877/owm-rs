@@ -1,0 +1,17 @@
+[package]
+name = "owm-rs"
+version = "0.1.0"
+edition = "2021"
+author = ["Oscuro87"]
+repository = ""
+
+[features]
+
+[dependencies]
+# Send calls and receive response
+tokio = { version = "1.21.2", features = ["rt-multi-thread"] }
+# Parse the response from the API
+serde = { version = "1.0.145", features = ["derive"] }
+
+[dev-dependencies]
+ron = "0.8.0"
