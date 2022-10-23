@@ -1,5 +1,3 @@
-use std::process::exit;
-
 use ron::{self, de::from_reader};
 use serde::Deserialize;
 
@@ -14,7 +12,7 @@ pub fn read_credentials() -> Credentials {
     let credentials: Credentials = match from_reader(file) {
         Ok(x) => x,
         Err(e) => {
-            println!("Failed opening credentials file.");
+            println!("Failed opening credentials file: {}", e);
             std::process::exit(1);
         }
     };
