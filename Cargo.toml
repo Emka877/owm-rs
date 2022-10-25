@@ -3,7 +3,7 @@ name = "owm-rs"
 version = "0.1.0"
 edition = "2021"
 author = ["Oscuro87"]
-repository = "2021"
+repository = "https://github.com/Oscuro87/owm-rs"
 
 [features]
 
