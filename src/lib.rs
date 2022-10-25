@@ -1,5 +1,3 @@
-use serde::de::IntoDeserializer;
-
 #[cfg(test)]
 mod tests;
 mod owm;
@@ -28,4 +26,8 @@ pub async fn get_weather_by_coordinates(latitude: f32, longitude: f32, api_key: 
     owm::weather::api
         ::get_weather_for_coordinates(latitude, longitude, api_key)
         .await
+}
+
+pub fn convert_fahrenheit_to_celsius(fahrenheit: f32) -> f32 {
+    utils::convert::fahrenheit_to_celsius(fahrenheit)
 }
