@@ -2,7 +2,7 @@
 name = "owm-rs"
 version = "1.0.0"
 edition = "2021"
-author = ["Oscuro87"]
+authors = ["Oscuro87"]
 repository = "https://github.com/Oscuro87/owm-rs"
 
 [features]
@@ -13,6 +13,8 @@ tokio = { version = "1.21.2", features = ["full"] }
 reqwest = { version = "0.11.12", features = ["json"]}
 # Parse the response from the API
 serde = { version = "1.0.145", features = ["derive"] }
+# Gentler error management
+anyhow = { version = "1.0.66" }
 
 [dev-dependencies]
 ron = "0.8.0"
