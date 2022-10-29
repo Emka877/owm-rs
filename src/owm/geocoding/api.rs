@@ -1,10 +1,13 @@
 #![allow(dead_code)]
-
+use crate::owm::constants::{ENDPOINT_GEOCODING_DIRECT, OWM_URI};
 use crate::owm::geocoding::structures::Coordinates;
-use crate::owm::constants::{OWM_URI, ENDPOINT_WEATHER};
+use anyhow::Result;
 
-pub async fn get_coordinates_by_location_name(city_name: String, api_key: String) -> Coordinates {
-    let call: String = format!("{OWM_URI}{ENDPOINT_WEATHER}?q={city_name}&appid={api_key}");
+pub async fn get_coordinates_by_location_name(
+    city_name: String,
+    api_key: String,
+) -> Result<Coordinates> {
+    let call: String = format!("{}{}?q={}&appid={}", OWM_URI, ENDPOINT_GEOCODING_DIRECT, city_name, api_key);
     let response: reqwest::Response = reqwest::get(&call).await.expect("Error");
-    response.json().await.expect("Could not parse the JSON.")
+    Ok(response.json().await?)
 }

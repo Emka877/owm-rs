@@ -1,79 +1,81 @@
 #![allow(dead_code)]
-use serde::Deserialize;
 use super::super::geocoding::structures::CoordinatesValues;
+use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct WeatherData {
-    coord: CoordinatesValues,
-    weather: Vec<WeatherNode>,
-    base: String,
-    main: WeatherMainNode,
-    visibility: i32,
-    wind: WeatherWindNode,
+    pub coord: CoordinatesValues,
+    pub weather: Vec<WeatherNode>,
+    pub base: String,
+    pub main: WeatherMainNode,
+    pub visibility: i32,
+    pub wind: WeatherWindNode,
     #[serde(default)]
-    rain: WeatherRainNode,
-    clouds: WeatherCloudNode,
-    dt: i32,
-    sys: WeatherSystemNode,
-    timezone: i32,
-    id: i32,
-    name: String,
-    cod: i32,
+    pub rain: WeatherRainNode,
+    pub clouds: WeatherCloudNode,
+    pub dt: i32,
+    pub sys: WeatherSystemNode,
+    pub timezone: i32,
+    pub id: i32,
+    pub name: String,
+    pub cod: i32,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct WeatherNode {
-    id: u32,
-    main: String,
-    description: String,
-    icon: String,
+    pub id: u32,
+    pub main: String,
+    pub description: String,
+    pub icon: String,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct WeatherMainNode {
-    temp: f32,
-    feels_like: f32,
-    temp_min: f32,
-    temp_max: f32,
-    pressure: i32,
-    humidity: i32,
+    pub temp: f32,
+    pub feels_like: f32,
+    pub temp_min: f32,
+    pub temp_max: f32,
+    pub pressure: i32,
+    pub humidity: i32,
     #[serde(default)]
-    sea_level: i32,
+    pub sea_level: i32,
     #[serde(default)]
-    grnd_level: i32,
+    pub grnd_level: i32,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct WeatherWindNode {
-    speed: f32,
-    deg: i32,
+    pub speed: f32,
+    pub deg: i32,
     #[serde(default)]
-    gust: f32,
+    pub gust: f32,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct WeatherRainNode {
     #[serde(rename = "1h")]
-    one_hour: f32,
+    pub one_hour: f32,
 }
 
 impl Default for WeatherRainNode {
     fn default() -> Self {
-        Self { one_hour: Default::default() }
+        Self {
+            one_hour: Default::default(),
+        }
     }
 }
 
 #[derive(Deserialize, Debug)]
 pub struct WeatherCloudNode {
-    all: i32,
+    pub all: i32,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct WeatherSystemNode {
     #[serde(rename = "type")]
-    sys_type: i32,
-    id: i32,
-    country: String,
-    sunrise: i32,
-    sunset: i32,
+    pub sys_type: i32,
+    pub id: i32,
+    pub country: String,
+    pub sunrise: i32,
+    pub sunset: i32,
 }

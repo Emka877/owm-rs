@@ -14,7 +14,7 @@ reqwest = { version = "0.11.12", features = ["json"]}
 # Parse the response from the API
 serde = { version = "1.0.145", features = ["derive"] }
 # Gentler error management
-anyhow = { version = "1.0.66" }
+anyhow = "1.0.66"
 
 [dev-dependencies]
 ron = "0.8.0"
