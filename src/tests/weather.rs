@@ -1,5 +1,5 @@
 use super::setup::read_credentials;
-use crate::get_weather_by_city;
+use crate::owm_api::get_weather_by_city;
 use crate::owm::geocoding::api::get_coordinates_by_location_name;
 use crate::owm::geocoding::structures::Coordinates;
 use crate::owm::weather::api::get_weather_for_coordinates;

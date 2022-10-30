@@ -6,6 +6,11 @@ authors = ["Oscuro87"]
 repository = "https://github.com/Oscuro87/owm-rs"
 
 [features]
+utils = []
+
+[[example]]
+name = "basic"
+required-features = ["utils"]
 
 [dependencies]
 # Send calls and receive response
