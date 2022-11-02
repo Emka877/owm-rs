@@ -15,7 +15,7 @@ pub async fn attempt_weather_data_retrieval() {
             .await
             .expect("Could not retrieve coordinates");
     let weather: WeatherData =
-        get_weather_for_coordinates(coords.coord.lat, coords.coord.lon, credentials.omw_api_key)
+        get_weather_for_coordinates(coords.get_latitude(), coords.get_longitude(), credentials.omw_api_key)
             .await
             .expect("Could not retrieve weather");
     // println!("{:#?}", weather);

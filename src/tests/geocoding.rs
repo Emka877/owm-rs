@@ -8,8 +8,8 @@ pub async fn get_city_coordinates() {
     let coords_result = api::get_coordinates_by_location_name(city_name, credentials.omw_api_key).await;
     match coords_result {
         Ok(coords) => {
-            assert_eq!(coords.coord.lat, 50.846558);
-            assert_eq!(coords.coord.lon, 4.351697);
+            assert_eq!(coords.get_latitude(), 50.846558);
+            assert_eq!(coords.get_longitude(), 4.351697);
             println!("{:?}", coords);
         }
         Err(err) => {

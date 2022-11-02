@@ -54,8 +54,8 @@ pub mod owm_api {
         let coordinates: owm::geocoding::structures::Coordinates =
             owm::geocoding::api::get_coordinates_by_location_name(city_name, api_key.clone()).await?;
         owm::weather::api::get_weather_for_coordinates(
-            coordinates.coord.lat,
-            coordinates.coord.lon,
+            coordinates.get_latitude(),
+            coordinates.get_longitude(),
             api_key,
         )
             .await

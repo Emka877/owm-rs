@@ -10,3 +10,13 @@ pub struct CoordinatesValues {
 pub struct Coordinates {
     pub coord: CoordinatesValues,
 }
+
+impl Coordinates {
+    pub fn get_longitude(&self) -> f32 {
+        self.coord.lon
+    }
+
+    pub fn get_latitude(&self) -> f32 {
+        self.coord.lat
+    }
+}

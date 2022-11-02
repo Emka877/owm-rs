@@ -35,7 +35,7 @@ async fn main() {
         }
     };
 
-    let weather_result = get_weather_by_coordinates(coordinates.coord.lat, coordinates.coord.lon, credentials.omw_api_key).await;
+    let weather_result = get_weather_by_coordinates(coordinates.get_latitude(), coordinates.get_longitude(), credentials.omw_api_key).await;
     let weather = match weather_result {
         Ok(ok) => ok,
         Err(err) => {
