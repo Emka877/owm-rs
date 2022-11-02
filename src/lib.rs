@@ -72,6 +72,6 @@ pub mod owm_utils {
 pub mod prelude {
     pub use crate::owm_api::*;
     #[cfg(feature = "utils")]
-    pub use crate::owm_utils::convert::*;
+    pub use crate::owm_utils::*;
     pub use crate::owm_structs::*;
 }
