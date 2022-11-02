@@ -1,5 +1,5 @@
 use super::setup;
-use crate::owm::geocoding::{api, structures::Coordinates};
+use crate::owm::geocoding::api;
 
 #[tokio::test]
 pub async fn get_city_coordinates() {
