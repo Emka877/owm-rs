@@ -64,12 +64,8 @@ pub mod owm_api {
 
 #[cfg(feature = "utils")]
 pub mod owm_utils {
-    /// Converts a Fahrenheit value to Celsius
-    ///
-    /// # Arguments
-    /// * `fahrenheit` - The value to convert to °C
-    pub fn convert_fahrenheit_to_celsius(fahrenheit: f32) -> f32 {
-        crate::utils::convert::fahrenheit_to_celsius(fahrenheit)
+    pub mod convert {
+        pub use crate::utils::convert::*;
     }
 }
 

@@ -45,6 +45,6 @@ async fn main() {
     };
 
     let temp: f32 = weather.main.temp;
-    let temp_c: f32 = convert_fahrenheit_to_celsius(temp);
+    let temp_c: f32 = convert::kelvin_to_celsius(temp);
     println!("It is {}°C ({}°F) in {}.", temp_c, temp, credentials.city_name);
 }

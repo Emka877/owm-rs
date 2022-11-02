@@ -18,8 +18,7 @@ pub async fn attempt_weather_data_retrieval() {
         get_weather_for_coordinates(coords.get_latitude(), coords.get_longitude(), credentials.omw_api_key)
             .await
             .expect("Could not retrieve weather");
-    // println!("{:#?}", weather);
-    let celsius: f32 = crate::utils::convert::fahrenheit_to_celsius(weather.main.temp);
+    let celsius: f32 = crate::utils::convert::kelvin_to_celsius(weather.main.temp);
     println!("Temp in Brussels: {}°C", celsius);
 }
 
