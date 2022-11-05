@@ -9,7 +9,7 @@ use crate::tests::setup::Credentials;
 #[tokio::test]
 pub async fn attempt_weather_data_retrieval() {
     let city_name: String = "Brussels".into();
-    let credentials = read_credentials();
+    let credentials: Credentials = read_credentials();
     let coords: Coordinates =
         get_coordinates_by_location_name(city_name, credentials.omw_api_key.clone())
             .await
@@ -26,7 +26,7 @@ pub async fn attempt_weather_data_retrieval() {
 pub async fn attempt_weather_data_retrieval_with_shortcut_fn() {
     let city_name: String = "Brussels".into();
     let credentials: Credentials = read_credentials();
-    let weather: anyhow::Result<WeatherData> =
+    let weather: Result<WeatherData, reqwest::Error> =
         get_weather_by_city(city_name, credentials.omw_api_key).await;
     match weather {
         Ok(_) => {}

@@ -18,8 +18,6 @@ tokio = { version = "1.21.2", features = ["full"] }
 reqwest = { version = "0.11.12", features = ["json"]}
 # Parse the response from the API
 serde = { version = "1.0.147", features = ["derive"] }
-# Gentler error management
-anyhow = "1.0.66"
 
 [dev-dependencies]
 ron = "0.8.0"

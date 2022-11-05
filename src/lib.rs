@@ -10,7 +10,6 @@ pub mod owm_structs {
 
 pub mod owm_api {
     use crate::{owm, owm_structs};
-    use anyhow::Result;
 
     /// Gets the coordinates of a city by its name
     ///
@@ -21,7 +20,7 @@ pub mod owm_api {
     pub async fn get_city_coordinates(
         city_name: String,
         api_key: String,
-    ) -> Result<owm_structs::Coordinates> {
+    ) -> Result<owm_structs::Coordinates, reqwest::Error> {
         owm::geocoding::api::get_coordinates_by_location_name(city_name, api_key).await
     }
 
@@ -37,7 +36,7 @@ pub mod owm_api {
         latitude: f32,
         longitude: f32,
         api_key: String,
-    ) -> Result<owm_structs::WeatherData> {
+    ) -> Result<owm_structs::WeatherData, reqwest::Error> {
         owm::weather::api::get_weather_for_coordinates(latitude, longitude, api_key).await
     }
 
@@ -50,7 +49,7 @@ pub mod owm_api {
     pub async fn get_weather_by_city(
         city_name: String,
         api_key: String,
-    ) -> Result<owm_structs::WeatherData> {
+    ) -> Result<owm_structs::WeatherData, reqwest::Error> {
         let coordinates: owm::geocoding::structures::Coordinates =
             owm::geocoding::api::get_coordinates_by_location_name(city_name, api_key.clone()).await?;
         owm::weather::api::get_weather_for_coordinates(

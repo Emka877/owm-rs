@@ -1,4 +1,3 @@
-#![allow(dead_code)]
 use super::super::geocoding::structures::CoordinatesValues;
 use serde::Deserialize;
 
@@ -51,18 +50,10 @@ pub struct WeatherWindNode {
     pub gust: f32,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Default)]
 pub struct WeatherRainNode {
     #[serde(rename = "1h")]
     pub one_hour: f32,
-}
-
-impl Default for WeatherRainNode {
-    fn default() -> Self {
-        Self {
-            one_hour: Default::default(),
-        }
-    }
 }
 
 #[derive(Deserialize, Debug)]
