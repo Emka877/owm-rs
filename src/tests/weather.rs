@@ -19,7 +19,7 @@ pub async fn attempt_weather_data_retrieval() {
             .await
             .expect("Could not retrieve weather");
     let celsius: f32 = crate::utils::convert::kelvin_to_celsius(weather.main.temp);
-    println!("Temp in Brussels: {}°C", celsius);
+    println!("Temp in Brussels: {:.2}°C", celsius);
 }
 
 #[tokio::test]
