@@ -1,5 +1,4 @@
 use owm_rs::prelude::*;
-
 use ron::{self, de::from_reader};
 use serde::Deserialize;
 
@@ -11,16 +10,15 @@ pub struct Credentials {
 
 pub fn read_credentials() -> Credentials {
     let file_path: &'static str = "test_data/credentials.ron";
-    let file = std::fs::File::open(file_path).expect("Failed opening credentials file.");
-    let credentials: Credentials = match from_reader(file) {
+    let file = std::fs::File::open(file_path)
+        .expect("Failed opening credentials file.");
+    match from_reader(file) {
         Ok(x) => x,
         Err(e) => {
             println!("Failed opening credentials file: {}", e);
             std::process::exit(1);
         }
-    };
-
-    credentials
+    }
 }
 
 #[tokio::main]
@@ -46,5 +44,5 @@ async fn main() {
 
     let temp: f32 = weather.main.temp;
     let temp_c: f32 = convert::kelvin_to_celsius(temp);
-    println!("It is {}°C ({}°F) in {}.", temp_c, temp, credentials.city_name);
+    println!("It is {:.2}°C ({:.2}°F) in {}.", temp_c, temp, credentials.city_name);
 }

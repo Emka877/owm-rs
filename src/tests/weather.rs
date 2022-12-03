@@ -29,9 +29,43 @@ pub async fn attempt_weather_data_retrieval_with_shortcut_fn() {
     let weather: Result<WeatherData, reqwest::Error> =
         get_weather_by_city(city_name, credentials.omw_api_key).await;
     match weather {
-        Ok(_) => {}
+        Ok(w) => {
+            println!("{:.2}", w.main.temp);
+        },
         Err(err) => {
             println!("Error: {}", err);
         }
     }
 }
+
+#[test]
+pub fn fetch_weather_by_city_name_blocking() {
+    let city_name: String = "Brussels".into();
+    let credentials: Credentials = read_credentials();
+    let weather: Result<WeatherData, reqwest::Error> =
+        crate::owm_api::blocking::get_weather_by_city(city_name, credentials.omw_api_key);
+    match weather {
+        Ok(w) => {
+            println!("{:.2}", w.main.temp);
+        },
+        Err(err) => {
+            println!("Error: {}", err);
+        }
+    }
+}
+
+// #[test]
+// pub fn fetch_weather_by_coords_blocking() {
+//     let city_name: String = "Brussels".into();
+//     let credentials: Credentials = read_credentials();
+//     let weather: Result<WeatherData, reqwest::Error> =
+//         crate::owm_api::blocking::get_weather_by_city(city_name, credentials.omw_api_key);
+//     match weather {
+//         Ok(w) => {
+//             println!("{:.2}", w.main.temp);
+//         },
+//         Err(err) => {
+//             println!("Error: {}", err);
+//         }
+//     }
+// }

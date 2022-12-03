@@ -1,4 +1,4 @@
-use super::super::geocoding::structures::CoordinatesValues;
+use crate::owm::geocoding::structures::CoordinatesValues;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
