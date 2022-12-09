@@ -129,8 +129,10 @@ pub mod owm_utils {
 }
 
 pub mod prelude {
+    // Main
     pub use crate::owm_api::*;
+    pub use crate::owm_structs::*;
+    // Features
     #[cfg(feature = "utils")]
     pub use crate::owm_utils::*;
-    pub use crate::owm_structs::*;
 }
