@@ -1,6 +1,6 @@
+use dotenvy::dotenv;
 use owm_rs::prelude::*;
 use serde::Deserialize;
-use dotenvy::dotenv;
 
 #[derive(Deserialize)]
 pub struct Credentials {
@@ -38,6 +38,7 @@ async fn main() {
         credentials.omw_api_key,
     )
     .await;
+
     let weather = match weather_result {
         Ok(ok) => ok,
         Err(err) => {
