@@ -1,6 +1,6 @@
 use owm_rs::prelude::*;
-use ron::{self, de::from_reader};
 use serde::Deserialize;
+use dotenvy::dotenv;
 
 #[derive(Deserialize)]
 pub struct Credentials {
@@ -9,14 +9,10 @@ pub struct Credentials {
 }
 
 pub fn read_credentials() -> Credentials {
-    let file_path: &'static str = "test_data/credentials.ron";
-    let file = std::fs::File::open(file_path).expect("Failed opening credentials file.");
-    match from_reader(file) {
-        Ok(x) => x,
-        Err(e) => {
-            println!("Failed opening credentials file: {}", e);
-            std::process::exit(1);
-        }
+    let _ = dotenv().expect("Cannot load the .env file.");
+    Credentials {
+        omw_api_key: std::env::var("OWM_API_KEY").expect("Cannot load the OWM_API_KEY env var."),
+        city_name: std::env::var("CITY").expect("Cannot load the CITY env var."),
     }
 }
 
