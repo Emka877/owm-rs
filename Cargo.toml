@@ -4,6 +4,8 @@ version = "1.0.6"
 edition = "2021"
 authors = ["Oscuro87"]
 repository = "https://github.com/Oscuro87/owm-rs"
+description = "Wrapper around the free offer of the OpenWeatherMap API."
+license = "MIT"
 
 [features]
 utils = []
