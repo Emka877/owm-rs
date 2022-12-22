@@ -5,7 +5,8 @@ use crate::owm::geocoding::api;
 pub async fn get_city_coordinates() {
     let city_name: String = "Brussels".into();
     let credentials: setup::Credentials = setup::read_credentials();
-    let coords_result = api::get_coordinates_by_location_name(city_name, credentials.omw_api_key).await;
+    let coords_result =
+        api::get_coordinates_by_location_name(city_name, credentials.omw_api_key).await;
     match coords_result {
         Ok(coords) => {
             assert_eq!(coords.get_latitude(), 50.846558);
@@ -22,7 +23,8 @@ pub async fn get_city_coordinates() {
 pub fn get_city_coordinates_blocking() {
     let city_name: String = "Brussels".into();
     let credentials: setup::Credentials = setup::read_credentials();
-    let coords_result = crate::owm_api::blocking::get_city_coordinates(city_name, credentials.omw_api_key);
+    let coords_result =
+        crate::owm_api::blocking::get_city_coordinates(city_name, credentials.omw_api_key);
     match coords_result {
         Ok(coords) => {
             assert_eq!(coords.get_latitude(), 50.846558);

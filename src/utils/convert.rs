@@ -21,5 +21,5 @@ pub fn kelvin_to_celsius(kelvin: f32) -> f32 {
 /// # Arguments
 /// `kelvin` - The Kelvin value to convert
 pub fn kelvin_to_fahrenheit(kelvin: f32) -> f32 {
-    (kelvin - 273.15) * (9.0/5.0) + 32.0
+    (kelvin - 273.15) * (9.0 / 5.0) + 32.0
 }

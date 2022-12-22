@@ -4,8 +4,8 @@ mod tests;
 mod utils;
 
 pub mod owm_structs {
-    pub use crate::owm::weather::structures::*;
     pub use crate::owm::geocoding::structures::*;
+    pub use crate::owm::weather::structures::*;
 }
 
 pub mod owm_api {
@@ -51,18 +51,19 @@ pub mod owm_api {
         api_key: String,
     ) -> Result<owm_structs::WeatherData, reqwest::Error> {
         let coordinates: owm::geocoding::structures::Coordinates =
-            owm::geocoding::api::get_coordinates_by_location_name(city_name, api_key.clone()).await?;
+            owm::geocoding::api::get_coordinates_by_location_name(city_name, api_key.clone())
+                .await?;
         owm::weather::api::get_weather_for_coordinates(
             coordinates.get_latitude(),
             coordinates.get_longitude(),
             api_key,
         )
-            .await
+        .await
     }
 
     pub mod blocking {
-        use tokio::runtime::Runtime;
         use crate::owm_structs;
+        use tokio::runtime::Runtime;
 
         fn get_runtime() -> Runtime {
             tokio::runtime::Builder::new_multi_thread()
@@ -112,7 +113,7 @@ pub mod owm_api {
         /// * `api_key` - Your OWM API key
         pub fn get_weather_by_city(
             city_name: String,
-            api_key: String
+            api_key: String,
         ) -> Result<owm_structs::WeatherData, reqwest::Error> {
             get_runtime().block_on(async move {
                 crate::owm_api::get_weather_by_city(city_name, api_key).await
