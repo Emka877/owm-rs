@@ -1,4 +1,4 @@
-use super::setup::read_credentials;
+use super::setup::*;
 use crate::owm::geocoding::api::get_coordinates_by_location_name;
 use crate::owm::geocoding::structures::Coordinates;
 use crate::owm::weather::api::get_weather_for_coordinates;
@@ -9,15 +9,15 @@ use crate::tests::setup::Credentials;
 #[tokio::test]
 pub async fn attempt_weather_data_retrieval() {
     let city_name: String = "Brussels".into();
-    let credentials: Credentials = read_credentials();
+    let credentials: Credentials = load_credentials();
     let coords: Coordinates =
-        get_coordinates_by_location_name(city_name, credentials.omw_api_key.clone())
+        get_coordinates_by_location_name(city_name, credentials.owm_api_key.clone())
             .await
             .expect("Could not retrieve coordinates");
     let weather: WeatherData = get_weather_for_coordinates(
         coords.get_latitude(),
         coords.get_longitude(),
-        credentials.omw_api_key,
+        credentials.owm_api_key,
     )
     .await
     .expect("Could not retrieve weather");
@@ -28,9 +28,9 @@ pub async fn attempt_weather_data_retrieval() {
 #[tokio::test]
 pub async fn attempt_weather_data_retrieval_with_shortcut_fn() {
     let city_name: String = "Brussels".into();
-    let credentials: Credentials = read_credentials();
+    let credentials: Credentials = load_credentials();
     let weather: Result<WeatherData, reqwest::Error> =
-        get_weather_by_city(city_name, credentials.omw_api_key).await;
+        get_weather_by_city(city_name, credentials.owm_api_key).await;
     match weather {
         Ok(w) => {
             println!("{:.2}", w.main.temp);
@@ -44,9 +44,9 @@ pub async fn attempt_weather_data_retrieval_with_shortcut_fn() {
 #[test]
 pub fn fetch_weather_by_city_name_blocking() {
     let city_name: String = "Brussels".into();
-    let credentials: Credentials = read_credentials();
+    let credentials: Credentials = load_credentials();
     let weather: Result<WeatherData, reqwest::Error> =
-        crate::owm_api::blocking::get_weather_by_city(city_name, credentials.omw_api_key);
+        crate::owm_api::blocking::get_weather_by_city(city_name, credentials.owm_api_key);
     match weather {
         Ok(w) => {
             println!("{:.2}", w.main.temp);

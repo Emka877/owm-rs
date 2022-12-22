@@ -2,3 +2,4 @@
 /Cargo.lock
 /test_data
 /.idea
+.env
