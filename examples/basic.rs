@@ -1,6 +1,6 @@
 use dotenvy::dotenv;
-use owm_rs::prelude::*;
 use serde::Deserialize;
+use owm_rs::owm_api::{get_city_coordinates, get_weather_by_coordinates};
 
 #[derive(Deserialize)]
 pub struct Credentials {
@@ -22,12 +22,12 @@ async fn main() {
     let coords_result = get_city_coordinates(
         credentials.city_name.clone(),
         credentials.omw_api_key.clone(),
-    )
-    .await;
+    ).await;
+
     let coordinates = match coords_result {
         Ok(ok) => ok,
         Err(err) => {
-            println!("Error trying to retrieve coordinates: {}", err);
+            println!("Error trying to retrieve coordinates: {err}");
             std::process::exit(1);
         }
     };
@@ -36,19 +36,18 @@ async fn main() {
         coordinates.get_latitude(),
         coordinates.get_longitude(),
         credentials.omw_api_key,
-    )
-    .await;
+    ).await;
 
     let weather = match weather_result {
         Ok(ok) => ok,
         Err(err) => {
-            println!("Error trying to retrieve the weather: {}", err);
+            println!("Error trying to retrieve the weather: {err}");
             std::process::exit(2);
         }
     };
 
     let temp: f32 = weather.main.temp;
-    let temp_c: f32 = convert::kelvin_to_celsius(temp);
+    let temp_c: f32 = owm_rs::owm_utils::convert::kelvin_to_celsius(temp);
     println!(
         "It is {:.2}°C ({:.2}°F) in {}.",
         temp_c, temp, credentials.city_name
