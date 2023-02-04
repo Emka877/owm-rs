@@ -122,7 +122,6 @@ pub mod owm_api {
     }
 }
 
-#[cfg(feature = "utils")]
 pub mod owm_utils {
     pub mod convert {
         pub use crate::utils::convert::*;
