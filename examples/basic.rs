@@ -48,8 +48,9 @@ async fn main() {
 
     let temp: f32 = weather.main.temp;
     let temp_c: f32 = owm_rs::owm_utils::convert::kelvin_to_celsius(temp);
+    let temp_f: f32 = owm_rs::owm_utils::convert::kelvin_to_fahrenheit(temp);
     println!(
         "It is {:.2}°C ({:.2}°F) in {}.",
-        temp_c, temp, credentials.city_name
+        temp_c, temp_f, credentials.city_name
     );
 }
