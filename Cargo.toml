@@ -1,6 +1,6 @@
 [package]
 name = "owm-rs"
-version = "1.0.15"
+version = "1.0.16"
 edition = "2021"
 authors = ["Oscuro87"]
 repository = "https://github.com/Oscuro87/owm-rs"
