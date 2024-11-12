@@ -11,6 +11,6 @@ pub async fn get_weather_for_coordinates(
         "{}{}?lat={}&lon={}&appid={}",
         OWM_URI, ENDPOINT_WEATHER, latitude, longitude, api_key
     );
-    let response: reqwest::Response = reqwest::get(&call).await.expect("Error");
-    Ok(response.json().await?)
+    let response: reqwest::Response = reqwest::get(&call).await?;
+    Ok(response.json().await)?
 }

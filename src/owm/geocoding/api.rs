@@ -10,6 +10,6 @@ pub async fn get_coordinates_by_location_name(
         "{}{}?q={}&appid={}",
         OWM_URI, ENDPOINT_GEOCODING_DIRECT, city_name, api_key
     );
-    let response: reqwest::Response = reqwest::get(&call).await.expect("Error");
-    Ok(response.json().await?)
+    let response: reqwest::Response = reqwest::get(&call).await?;
+    Ok(response.json().await)?
 }
